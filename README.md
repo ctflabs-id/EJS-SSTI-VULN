@@ -78,10 +78,10 @@ Jangan gunakan teknik ini untuk menyerang sistem tanpa izin.
 
 <hr>
 
-🤝 Kontribusi
-Pull request & issue welcome via: ctflabs-id/EJS-SSTI-VULN
+🤝 Kontribusi Pull request & issue welcome via: ctflabs-id/EJS-SSTI-VULN
 
 🧠 Maintained by
-1. GitHub: @ctflabs-id
-2. Website: ctflabsid.my.id
+
+    GitHub: @ctflabs-id
+    Website: ctflabsid.my.id
 
